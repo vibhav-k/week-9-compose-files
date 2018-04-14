@@ -16,3 +16,5 @@ Create a directory for YOUR submission, use your student ID just like you did on
     `mkdir -p jogr1931/week-9-compose-files`
     
 All of your work should go inside this directory, remember, you'll need your db init files, Dockerfiles (assuming you create a custom image) and of course your compose file.  Please include a README file with any special information that I'll need in order to run your assignment and access the web page.
+
+Push your changes to your Github as you go along, and when you're ready; create a Pull Request back to the Course Repo that you forked from.
