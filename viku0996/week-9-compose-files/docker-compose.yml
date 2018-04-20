@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+ database:
+  image: mysql
+  hostname: database
+  container_name: database
+  restart: always
+  cap_add:
+  - SYS_ADMIN
+  ports:
+  - "3306:3306"
+  environment:    
+  - "MYSQL_ROOT_PASSWORD=root"
+  - "MYSQL_DATABASE=mydb"
+  - "MYSQL_USER=master"
+  - "MYSQL_PASSWORD=mastersql"
+  volumes:
+  - "./data/files/mydb.sql:/docker-entrypoint-initdb.d/mydb.sql"
+  - "./data/mysql:/var/lib/mysql/"
+
+ web:
+  depends_on: 
+  - database
+  build:
+   context: .
+   dockerfile: ./web/Dockerfile
+  container_name: webserver
+  command: >
+   bash -c "service php7.0-fpm start && nginx" 
+  ports:
+  - "80:80"
+  hostname: webserver
